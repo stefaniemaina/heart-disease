@@ -135,9 +135,8 @@ if bt:
     if prediction == 1:
         st.write("{}, you have a heart disease".format(name))
     else:
-        st.write("{}, you do not have a heart disease".format(name))
-                 
-#Get model accuracy
-model= GradientBoostingClassiffier()
-model.fit(X_train, y_train)
-st.write("Model accuracy: ", round(metrics.accuracy_score(y_test, model.predict(X_test)),2)*100)
+        st.write("{}, you do not have a heart disease".format(name))                 
+        #Get model accuracy
+        model= GradientBoostingClassiffier()
+        model.fit(X_train, y_train)
+        st.write("Model accuracy: ", round(metrics.accuracy_score(y_test, model.predict(X_test)),2)*100)
