@@ -41,20 +41,20 @@ def median_target(var):
     return temp
 
 # GenHlth
-df.loc[(df['HeartDiseaseorAttack'] == 0 ) & (df['GenHlth'].isnull()), 'GenHlth'] = 110.6
-df.loc[(df['HeartDiseaseorAttack'] == 1 ) & (df['GenHlth'].isnull()), 'GenHlth'] = 142.3
+df.loc[(df['HeartDiseaseorAttack'] == 0 ) & (df['GenHlth'].isnull()), 'GenHlth'] = 1
+df.loc[(df['HeartDiseaseorAttack'] == 1 ) & (df['GenHlth'].isnull()), 'GenHlth'] = 5
 
 # Age
-df.loc[(df['HeartDiseaseorAttack'] == 0 ) & (df['Age'].isnull()), 'Age'] = 70.9
-df.loc[(df['HeartDiseaseorAttack'] == 1 ) & (df['Age'].isnull()), 'Age'] = 75.3
+df.loc[(df['HeartDiseaseorAttack'] == 0 ) & (df['Age'].isnull()), 'Age'] = 3
+df.loc[(df['HeartDiseaseorAttack'] == 1 ) & (df['Age'].isnull()), 'Age'] = 13
 
 # Stroke
-df.loc[(df['HeartDiseaseorAttack'] == 0 ) & (df['Stroke'].isnull()), 'Stroke'] = 27.2
-df.loc[(df['HeartDiseaseorAttack'] == 1 ) & (df['Stroke'].isnull()), 'Stroke'] = 33.0
+df.loc[(df['HeartDiseaseorAttack'] == 0 ) & (df['Stroke'].isnull()), 'Stroke'] = 0
+df.loc[(df['HeartDiseaseorAttack'] == 1 ) & (df['Stroke'].isnull()), 'Stroke'] = 1
 
 # HighBP
-df.loc[(df['HeartDiseaseorAttack'] == 0 ) & (df['HighBP'].isnull()), 'HighBP'] = 130.3
-df.loc[(df['HeartDiseaseorAttack'] == 1 ) & (df['HighBP'].isnull()), 'HighBP'] = 206.8
+df.loc[(df['HeartDiseaseorAttack'] == 0 ) & (df['HighBP'].isnull()), 'HighBP'] = 0
+df.loc[(df['HeartDiseaseorAttack'] == 1 ) & (df['HighBP'].isnull()), 'HighBP'] = 1
 
 
 # Add two columns for data visualization
@@ -132,10 +132,12 @@ if bt:
     model.fit(X_train, y_train)
     #get user input features
     prediction = model.predict(user_input)
-    if prediction == 0:
+    if prediction == 1:
         st.write("{}, you have a heart disease".format(name))
     else:
         st.write("{}, you do not have a heart disease".format(name))
                  
 #Get model accuracy
+model= GradientBoostingClassiffier()
+model.fit(X_train, y_train)
 st.write("Model accuracy: ", round(metrics.accuracy_score(y_test, model.predict(X_test)),2)*100)
